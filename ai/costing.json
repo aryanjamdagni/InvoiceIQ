@@ -1,0 +1,12 @@
+{
+    "llm_cost_analysis": {
+        "total_input_tokens": 8702,
+        "total_output_tokens": 1543,
+        "total_input_cost": 0.017404,
+        "total_output_cost": 0.018516,
+        "total_cost": 0.03592,
+        "cost_by_model": {
+            "openrouter/google/gemini-3-pro-preview": 0.03592
+        }
+    }
+}

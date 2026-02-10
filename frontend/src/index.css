@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+:root {
+  --af-bg: #f7f7ff;
+  --af-panel: #ffffff;
+  --af-panel-2: #fbfbff;
+
+  --af-text: #0b1224;
+  --af-muted: #5b6b86;
+  --af-line: rgba(11, 18, 36, 0.10);
+
+  --af-primary: #6d28d9;
+  --af-primary-2: #2563eb;
+  --af-accent: #06b6d4;
+  --af-hot: #f43f5e;
+  --af-lime: #22c55e;
+
+  --af-radius-xl: 22px;
+  --af-radius-lg: 16px;
+  --af-radius-md: 12px;
+
+  --af-shadow-soft: 0 18px 50px rgba(11, 18, 36, 0.12);
+  --af-shadow-card: 0 10px 28px rgba(11, 18, 36, 0.08);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: radial-gradient(1200px 700px at 15% 10%, rgba(109,40,217,.14), transparent 60%),
+              radial-gradient(900px 600px at 90% 15%, rgba(37,99,235,.12), transparent 55%),
+              radial-gradient(900px 600px at 70% 95%, rgba(6,182,212,.10), transparent 55%),
+              var(--af-bg);
+  color: var(--af-text);
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+@keyframes afFloatA { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(0,-18px,0) scale(1.03);} }
+@keyframes afFloatB { 0%,100% { transform: translate3d(0,0,0) scale(1); } 50% { transform: translate3d(0,16px,0) scale(1.05);} }
+@keyframes afSpinSoft { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
+@keyframes afShimmer { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+
+.thin-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.thin-scroll::-webkit-scrollbar-thumb { background: rgba(100, 116, 139, 0.35); border-radius: 999px; }
+.thin-scroll::-webkit-scrollbar-track { background: transparent; }
+
+@layer components {
+  .af-shell { @apply min-h-screen grid grid-cols-[270px_1fr]; }
+  .af-sidebar { @apply sticky top-0 h-screen bg-[var(--af-panel)] border-r border-[var(--af-line)] px-3 py-4 flex flex-col gap-3; }
+  .af-main { @apply min-w-0 flex flex-col; }
+  .af-topbar { @apply sticky top-0 z-10 px-6 py-4 border-b border-[var(--af-line)] bg-[color:var(--af-bg)]/80 backdrop-blur; }
+
+  .af-brand { @apply flex items-center gap-3 p-3 rounded-[var(--af-radius-lg)] border border-[var(--af-line)] bg-gradient-to-b from-white to-[var(--af-panel-2)]; }
+  .af-brandDot { @apply w-9 h-9 rounded-xl; background: radial-gradient(circle at 30% 30%, #60a5fa, #1d4ed8); }
+
+  .af-navItem { @apply flex items-center gap-3 px-3 py-2.5 rounded-xl border border-transparent text-[13px] font-extrabold text-[var(--af-text)] transition; }
+  .af-navItem:hover { @apply bg-[#f3f6ff] border-[color:rgba(59,130,246,.15)] -translate-y-[1px] shadow-[var(--af-shadow-card)]; }
+  .af-navActive { @apply bg-[#eef4ff] border-[color:rgba(59,130,246,.25)] text-[#0b3aa6]; }
+  .af-navIcon { @apply w-9 h-9 rounded-xl grid place-items-center bg-slate-100 border border-[var(--af-line)]; }
+
+  .af-card { @apply bg-[var(--af-panel)] border border-[var(--af-line)] rounded-[var(--af-radius-xl)] shadow-[var(--af-shadow-card)] overflow-hidden transition; }
+  .af-card:hover { @apply -translate-y-[2px]; box-shadow: var(--af-shadow-soft); }
+  .af-cardHead { @apply px-5 py-4 border-b border-[var(--af-line)] flex items-center justify-between gap-4; }
+  .af-cardBody { @apply px-5 py-4; }
+  .af-h3 { @apply text-[14px] font-black tracking-wide; }
+  .af-hint { @apply text-[12px] text-[var(--af-muted)] font-semibold; }
+
+  .af-label { @apply text-[12px] text-[var(--af-muted)] font-extrabold; }
+  .af-input { @apply w-full px-3 py-2.5 rounded-[var(--af-radius-lg)] bg-white border border-[var(--af-line)] outline-none transition; }
+  .af-input:focus { box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12); border-color: rgba(59, 130, 246, 0.45); }
+
+  .af-btn { @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-[var(--af-radius-lg)] font-black text-[13px] border transition; }
+  .af-btnGhost { @apply bg-white border-[var(--af-line)] hover:-translate-y-[1px] hover:shadow-[var(--af-shadow-card)]; }
+  .af-btnPrimary { @apply text-white border-transparent shadow-[var(--af-shadow-card)]; background: linear-gradient(120deg, var(--af-primary), var(--af-primary-2), var(--af-accent)); background-size: 180% 180%; animation: afShimmer 8s ease infinite; }
+  .af-btnDanger { @apply bg-rose-50 text-rose-700 border-rose-200 hover:-translate-y-[1px] hover:shadow-[var(--af-shadow-card)]; }
+
+  .af-chip { @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-[12px] font-black border; }
+  .af-chipOk { @apply border-emerald-200 text-emerald-700 bg-emerald-50; }
+  .af-chipWarn { @apply border-amber-200 text-amber-800 bg-amber-50; }
+  .af-chipFail { @apply border-rose-200 text-rose-700 bg-rose-50; }
+
+  .af-table { @apply w-full border-separate border-spacing-0; }
+  .af-th { @apply text-left text-[12px] text-[var(--af-muted)] font-black tracking-wide px-3 py-3 border-b border-[var(--af-line)]; }
+  .af-td { @apply text-left text-[13px] px-3 py-3 border-b border-[var(--af-line)]; }
+  .af-tr:hover { @apply bg-[#f7f9ff]; }
+
+  .af-kpiGrid { @apply grid gap-4; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .af-kpiTile { @apply rounded-[18px] border border-[var(--af-line)] p-4 overflow-hidden relative bg-[var(--af-panel)]; }
+  .af-kpiTile::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(120deg, rgba(109,40,217,.18), rgba(37,99,235,.14), rgba(6,182,212,.12), rgba(244,63,94,.10));
+    filter: blur(18px);
+    z-index: 0;
+  }
+  .af-kpiInner { @apply relative; }
+  .af-kpiK { @apply text-[12px] font-extrabold text-[var(--af-muted)] tracking-wide; }
+  .af-kpiV { @apply mt-2 text-[28px] font-black text-[var(--af-text)]; }
+
+  .af-gradientText {
+    background: linear-gradient(90deg, var(--af-primary), var(--af-primary-2), var(--af-accent), var(--af-hot));
+    background-size: 220% 220%;
+    animation: afShimmer 6s ease infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+@media (max-width: 1100px) {
+  .af-kpiGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 980px) {
+  .af-shell { grid-template-columns: 1fr; }
+  .af-sidebar { position: relative; height: auto; }
+}
+
+@media (max-width: 640px) {
+  .af-kpiGrid { grid-template-columns: 1fr; }
+}

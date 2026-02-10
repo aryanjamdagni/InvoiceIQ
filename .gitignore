@@ -1,0 +1,107 @@
+# =========================
+# Node / Backend
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# Environment variables
+# =========================
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+
+# =========================
+# Build outputs
+# =========================
+dist/
+build/
+out/
+
+# =========================
+# Vite / React
+# =========================
+.vite/
+.vite-cache/
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# =========================
+# Python / AI service
+# =========================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.env.python
+.venv/
+venv/
+ENV/
+env/
+
+# =========================
+# Jupyter / AI artifacts
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# AI generated / temp files
+# =========================
+data/
+outputs/
+generated/
+temp/
+tmp/
+
+# =========================
+# Uploads / Reports
+# =========================
+uploads/
+reports/
+downloads/
+
+# =========================
+# MongoDB local data
+# =========================
+mongo-data/
+
+# =========================
+# Coverage / Testing
+# =========================
+coverage/
+.nyc_output/
+
+# =========================
+# Optional: lock files (keep ONE if needed)
+# =========================
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
